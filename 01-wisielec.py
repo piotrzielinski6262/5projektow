@@ -3,6 +3,7 @@ import sys
 no_of_tries = 5
 word = "kamila"
 used_letters = []
+wants_to_play_again = "NIE"
 
 user_word = []
 
@@ -17,10 +18,16 @@ def find_indexes(word, letter):
 
 def show_state_of_game():
     print()
-    print(user_word)
+    if user_word != []:
+        print(user_word)
     print("Pozostało prób", no_of_tries)
-    print("Użyte litery:", used_letters)
+    if used_letters != []:
+        print("Użyte litery:", used_letters)
     print()
+
+def appedning(word, user_word):
+    for _ in word:
+        user_word.append("_")
 
 ###
 
@@ -46,6 +53,20 @@ while True:
 
         if "".join(user_word) == word:
             print("Brawo, to jest to słowo! :D")
-            sys.exit(0)
+            
+            
+            print("Czy chcesz zagrać ponownie?")
+            print("TAK / NIE")
+            print()
+            wants_to_play_again = input()
 
+            if wants_to_play_again != "TAK":
+                sys.exit(0)
+            else:
+                no_of_tries = 5
+                word = "kamila"
+                used_letters = []
+                user_word = []
+                appedning(word, user_word)
+            
     show_state_of_game()
